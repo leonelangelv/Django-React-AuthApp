@@ -1,0 +1,77 @@
+.login__container {
+  background-image: linear-gradient(135deg, #65cef8, #681da8);
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__box {
+  background: white;
+  border-radius: .8rem;
+  padding: 1.2rem;
+  width: 20rem;
+  height: auto;
+}
+
+.login__box__title {
+  font-size: 2rem;
+  margin-bottom: 6rem;
+  letter-spacing: .2rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.formLogin__container__input {
+  width: 100%;
+  padding: .8rem 0rem;
+  margin: 8px 0;
+}
+
+.has-error::placeholder {
+  color: #f00;
+}
+
+.has-error {
+  border: none;
+  outline: none;
+  border-bottom: .13rem solid #f00;
+}
+
+.not-error {
+  border: none;
+  outline: none;
+  border-bottom: .13rem solid #535353;
+  box-sizing: border-box;
+}
+
+.login__box__buttonSubmit {
+  color: #fff;
+  background-image: linear-gradient(135deg, #65cef8, #681da8);
+  width: 100%;
+  height: 3rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: .6rem;
+}
+
+.login__box__moreInfo__container {
+  margin-top: 3rem;
+}
+
+.login__box__moreInfo {
+  text-align: center;
+}
+
+.login__box__moreInfo__featuredLink {
+  color: #173eeb;
+  font-weight: bold;
+}
+
+
+.formLogin__container__errorBox {
+  color: #f00;
+}
