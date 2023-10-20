@@ -19,33 +19,10 @@
 
 .login__box__title {
   font-size: 2rem;
-  margin-bottom: 6rem;
+  /* margin-bottom: 6rem; */
   letter-spacing: .2rem;
   font-weight: bolder;
   text-align: center;
-}
-
-.formLogin__container__input {
-  width: 100%;
-  padding: .8rem 0rem;
-  margin: 8px 0;
-}
-
-.has-error::placeholder {
-  color: #f00;
-}
-
-.has-error {
-  border: none;
-  outline: none;
-  border-bottom: .13rem solid #f00;
-}
-
-.not-error {
-  border: none;
-  outline: none;
-  border-bottom: .13rem solid #535353;
-  box-sizing: border-box;
 }
 
 .login__box__buttonSubmit {
@@ -69,9 +46,4 @@
 .login__box__moreInfo__featuredLink {
   color: #173eeb;
   font-weight: bold;
-}
-
-
-.formLogin__container__errorBox {
-  color: #f00;
 }

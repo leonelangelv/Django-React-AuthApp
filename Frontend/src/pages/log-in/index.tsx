@@ -1,38 +1,22 @@
 import { Link } from 'react-router-dom';
 import s from './login.module.css';
+import { InputForm } from '@components/InputForm';
 
 export const LogIn = () => {
-  const error = true;
 
   return (
     <div className={s.login__container}>
       <div className={s.login__box}>
         <p className={s.login__box__title}>Login</p>
         <form className={s.formLogin__container}>
-          <input
-            type='email'
+          <InputForm
+            type='Email'
             placeholder='Email'
-            className={`${s.formLogin__container__input} ${
-              error ? s['has-error'] : s['not-error']
-            }`}
           />
-          {error && (
-            <div className={s.formLogin__container__errorBox}>
-              Error
-            </div>
-          )}
-          <input
-            type='text'
+          <InputForm
+            type='password'
             placeholder='Password'
-            className={`${s.formLogin__container__input} ${
-              error ? s['has-error'] : s['not-error']
-            }`}
           />
-          {error && (
-            <div className={s.formLogin__container__errorBox}>
-              Error
-            </div>
-          )}
           <button type='submit' className={s.login__box__buttonSubmit}>
             Login
           </button>
@@ -41,10 +25,7 @@ export const LogIn = () => {
           <p className={s.login__box__moreInfo}>
             Forgot{' '}
             {
-              <Link
-                to={'noce'}
-                className={s.login__box__moreInfo__featuredLink}
-              >
+              <Link to={''} className={s.login__box__moreInfo__featuredLink}>
                 Password
               </Link>
             }
@@ -52,7 +33,7 @@ export const LogIn = () => {
           </p>
           <p className={s.login__box__moreInfo}>
             Don't have an account?{' '}
-            <Link to={'noce'} className={s.login__box__moreInfo__featuredLink}>
+            <Link to={''} className={s.login__box__moreInfo__featuredLink}>
               Sing up
             </Link>
           </p>
