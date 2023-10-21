@@ -33,6 +33,7 @@
   margin-top: 1rem;
   border: none;
   border-radius: .6rem;
+  cursor: pointer;
 }
 
 .login__box__moreInfo__container {
