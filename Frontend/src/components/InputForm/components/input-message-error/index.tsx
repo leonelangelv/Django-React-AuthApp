@@ -1,0 +1,13 @@
+import { FC } from 'react';
+
+interface Props {
+  message: string;
+}
+
+const styles = {
+  color: '#f00'
+};
+
+export const InputErrorMessage: FC<Props> = ({ message }) => {
+  return <div style={styles}>{message}</div>;
+};

@@ -20,7 +20,3 @@
   border-bottom: .13rem solid #535353;
   box-sizing: border-box;
 }
-
-.formLogin__container__errorBox {
-  color: #f00;
-}

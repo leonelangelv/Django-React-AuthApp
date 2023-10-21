@@ -1,4 +1,6 @@
 import { FC, InputHTMLAttributes } from 'react';
+import { InputErrorMessage } from './components/input-message-error';
+
 import s from './InputForm.module.css';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
@@ -12,7 +14,7 @@ export const InputForm: FC<Props> = ({
   type,
   placeholder,
   hasError = false,
-  errorMessage,
+  errorMessage = '',
   ...props
 }) => {
   return (
@@ -22,12 +24,10 @@ export const InputForm: FC<Props> = ({
         placeholder={placeholder}
         className={`${s.formLogin__container__input} ${
           hasError ? s['has-error'] : s['not-error']
-          }`}
+        }`}
         {...props}
       />
-      {hasError && (
-        <div className={s.formLogin__container__errorBox}>{errorMessage}</div>
-      )}
+      {hasError && <InputErrorMessage message={errorMessage} />}
     </>
   );
 };

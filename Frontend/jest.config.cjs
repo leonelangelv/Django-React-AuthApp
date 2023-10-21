@@ -8,7 +8,10 @@ module.exports = {
       '<rootDir>/__mocks__/fileMock.js',
     // '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.module\\.css$': 'identity-obj-proxy',
-    '^@assets/(.*)': '<rootDir>/src/assets/$1'
+
+    // Alias for test
+    '^@assets/(.*)': '<rootDir>/src/assets/$1',
+    '^@components/(.*)': '<rootDir>/src/components/$1',
   }
 };
 
