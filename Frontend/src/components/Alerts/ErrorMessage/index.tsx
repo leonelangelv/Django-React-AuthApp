@@ -1,8 +1,12 @@
+import { FC } from 'react';
 import { errorIcon } from '@assets/icon';
 
 import s from './ErrorMessage.module.css';
 
-export const ErrorMessage = () => {
+interface Props {
+  message: string;
+}
+export const ErrorMessage: FC<Props> = ({ message }) => {
   return (
     <div className={s.errorMessage__container}>
       <img
@@ -10,9 +14,7 @@ export const ErrorMessage = () => {
         alt='Error icon'
         className={s.errorMessage__container__icon}
       />
-      <p className={s.errorMessage__container__message}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      </p>
+      <p className={s.errorMessage__container__message}>{message}</p>
     </div>
   );
 };
