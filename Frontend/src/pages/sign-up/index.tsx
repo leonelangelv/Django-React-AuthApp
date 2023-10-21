@@ -10,8 +10,8 @@ export const Signup  = () => {
         <p className={s.signup__box__title}>Sign up</p>
         <form className={s.formsignup__container}>
           <InputForm
-            type='Email'
-            placeholder='Email'
+            type='text'
+            placeholder='Username'
           />
           <InputForm
             type='password'

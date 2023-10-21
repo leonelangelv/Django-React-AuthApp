@@ -8,7 +8,7 @@ export const Login = () => {
       <div className={s.login__box}>
         <p className={s.login__box__title}>Login</p>
         <form className={s.formLogin__container}>
-          <InputForm type='Email' placeholder='Email' />
+          <InputForm type='text' placeholder='Username' />
           <InputForm type='password' placeholder='Password' />
           <button type='submit' className={s.login__box__buttonSubmit}>
             Login
@@ -19,7 +19,7 @@ export const Login = () => {
             Forgot{' '}
             {
               <Link
-                to={'password-recovery'}
+                to={'/password-recovery'}
                 className={s.login__box__moreInfo__featuredLink}
               >
                 Password
