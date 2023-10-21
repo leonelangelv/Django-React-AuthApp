@@ -1,0 +1,50 @@
+.signup__container {
+  background-image: linear-gradient(135deg, #65cef8, #681da8);
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup__box {
+  background: white;
+  border-radius: .8rem;
+  padding: 1.2rem;
+  width: 20rem;
+  height: auto;
+}
+
+.signup__box__title {
+  font-size: 2rem;
+  /* margin-bottom: 6rem; */
+  letter-spacing: .2rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.signup__box__buttonSubmit {
+  color: #fff;
+  background-image: linear-gradient(135deg, #65cef8, #681da8);
+  width: 100%;
+  height: 3rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: .6rem;
+  cursor: pointer;
+}
+
+.signup__box__moreInfo__container {
+  margin-top: 3rem;
+}
+
+.signup__box__moreInfo {
+  text-align: center;
+}
+
+.signup__box__moreInfo__featuredLink {
+  color: #173eeb;
+  font-weight: bold;
+}
