@@ -22,9 +22,10 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
-      "@pages/*": ["pages/*"], 
+      "@pages/*": ["pages/*"],
       "@components/*": ["components/*"],
       "@assets/*": ["assets/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": ["src"],
