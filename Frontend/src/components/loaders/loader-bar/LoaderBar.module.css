@@ -1,0 +1,46 @@
+.loaderBar__container {
+  z-index: 100;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(135deg, #65cef8, #681da8);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.loaderBar__container__bar {
+  height: 3.5rem;
+  width: 50%;
+  background-color: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 3rem;
+  overflow: hidden;
+  box-shadow: 7px 7px 14px #4b636d,
+    -7px -7px 14px #b3ebff;
+}
+
+.loaderBar__container__bar h1 {
+  margin: auto;
+  color: #000000;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+  z-index: 20;
+}
+
+.loaderBar__container__bar__progress {
+  height: 100%;
+  background-color: #681da8;
+  position: absolute;
+  justify-self: start;
+  border-radius: 4rem;
+  animation: animate 4s infinite;
+  width: 55%;
+  z-index: 10;
+}

@@ -10,6 +10,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
 }
 
+/**
+ * `InputForm` es un componente de formulario de React que renderiza un elemento de entrada y muestra un mensaje de error si es necesario.
+ *
+ * @component
+ * @param {boolean} [hasError=false] - Un indicador de si el elemento de entrada tiene un error.
+ * @param {string} [errorMessage=''] - El mensaje de error a mostrar si `hasError` es verdadero.
+ */
+
 export const InputForm: FC<Props> = ({
   type,
   placeholder,
