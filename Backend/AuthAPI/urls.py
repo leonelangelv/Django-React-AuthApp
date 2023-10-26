@@ -1,5 +1,5 @@
 """
-URL configuration for main project.
+URL configuration for AuthAPI project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,12 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api.views import singUp, logIn, updateUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sing-up/', singUp),
-    path('log-in/', logIn),
-    path('log-in/<int:user_id>/', logIn),
-    path('update-user/<int:user_id>/', updateUser),
 ]
