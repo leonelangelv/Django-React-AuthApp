@@ -12,6 +12,7 @@ module.exports = {
     // Alias for test
     '^@assets/(.*)': '<rootDir>/src/assets/$1',
     '^@components/(.*)': '<rootDir>/src/components/$1',
+    '^@constant/(.*)': '<rootDir>/src/constant/$1'
   }
 };
 
