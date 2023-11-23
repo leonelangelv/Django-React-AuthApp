@@ -13,7 +13,10 @@ export default defineConfig({
       '@pages': path.resolve(__dirname, './src/pages'),
       '@components': path.resolve(__dirname, './src/components'),
       '@assets': path.resolve(__dirname, './src/assets'),
-      '@hooks': path.resolve(__dirname, './src/hooks')
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@helpers': path.resolve(__dirname, './src/helpers'),
+      '@services': path.resolve(__dirname, './src/services'),
+      '@constant': path.resolve(__dirname, './src/constant'),
     }
   },
   css: {
