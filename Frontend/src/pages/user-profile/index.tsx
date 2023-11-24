@@ -14,7 +14,7 @@ export const UserProfile = () => {
     setDataEdit(!dataEdit);
   };
 
-  const { isOpen, closeModal, openModal } = useModal(false);
+  const [isOpenDelete, openDeleteModal, closeDeleteModal] = useModal(false);
 
   return (
     <section className={styles.userProfile__contianer}>
@@ -23,19 +23,19 @@ export const UserProfile = () => {
           <LoaderBar message='Deleting' />
         </div>
       )}
-      {isOpen && (
+      {isOpenDelete && (
         <div className={styles.deleteAccount__container}>
           <div className={styles.deleteAccount__container__delete__box}>
             <p>Do you want to delete your account?</p>
             <button
               onClick={() => {
                 setDeleteAccount(true);
-                closeModal();
+                closeDeleteModal();
               }}
             >
               Yes
             </button>
-            <button onClick={closeModal}>No</button>
+            <button onClick={closeDeleteModal}>No</button>
           </div>
         </div>
       )}
@@ -44,7 +44,9 @@ export const UserProfile = () => {
 
       <article className={styles.userProfile__contianer__user}>
         <section className={styles.userProfile__contianer__user__profile}>
-          <div className={styles.userProfile__contianer__user__profile__img__box}>
+          <div
+            className={styles.userProfile__contianer__user__profile__img__box}
+          >
             <img
               src='https://th.bing.com/th/id/OIP.qDwy8_W3I3nDq0A89Mmk5QHaHa?w=191&h=191&c=7&r=0&o=5&pid=1.7'
               alt='Don Pepito'
@@ -62,14 +64,20 @@ export const UserProfile = () => {
             src='https://th.bing.com/th?id=OIP.g8nzSYYKVcA4_9Ct31W1LwHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'
             alt='Flag Argentina'
             title='Flag Argentina'
-            className={styles.userProfile__contianer__user__profile__flagCountry}
+            className={
+              styles.userProfile__contianer__user__profile__flagCountry
+            }
           />
         </section>
 
         <section className={styles.userProfile__contianer__user__userData}>
-          <article className={styles.userProfile__contianer__user__userData__data}>
+          <article
+            className={styles.userProfile__contianer__user__userData__data}
+          >
             <h3>Personal data</h3>
-            <form className={styles.userProfile__contianer__user__userData__form}>
+            <form
+              className={styles.userProfile__contianer__user__userData__form}
+            >
               <div>
                 <label htmlFor=''>Name</label>
                 <InputForm
@@ -175,8 +183,10 @@ export const UserProfile = () => {
             )}
           </article>
           <button
-            onClick={openModal}
-            className={styles.userProfile__contianer__user__userData__buttonDelete}
+            onClick={openDeleteModal}
+            className={
+              styles.userProfile__contianer__user__userData__buttonDelete
+            }
           >
             Delete account
           </button>
