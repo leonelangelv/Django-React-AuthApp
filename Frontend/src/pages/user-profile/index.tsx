@@ -5,6 +5,7 @@ import { HeaderUserProfile } from './components/header-userProfile';
 import { LoaderBar } from '@components/loaders/loader-bar';
 
 import styles from './UserProfile.module.css';
+import { DeleteAccountModal } from './components/delete-account-modal';
 
 export const UserProfile = () => {
   const [dataEdit, setDataEdit] = useState(true);
@@ -24,20 +25,10 @@ export const UserProfile = () => {
         </div>
       )}
       {isOpenDelete && (
-        <div className={styles.deleteAccount__container}>
-          <div className={styles.deleteAccount__container__delete__box}>
-            <p>Do you want to delete your account?</p>
-            <button
-              onClick={() => {
-                setDeleteAccount(true);
-                closeDeleteModal();
-              }}
-            >
-              Yes
-            </button>
-            <button onClick={closeDeleteModal}>No</button>
-          </div>
-        </div>
+        <DeleteAccountModal
+          setDeleteAccount={setDeleteAccount}
+          closeModal={closeDeleteModal}
+        />
       )}
 
       <HeaderUserProfile />
@@ -152,7 +143,7 @@ export const UserProfile = () => {
               </div>
             </form>
 
-            {dataEdit ? (
+            <div>
               <button
                 onClick={handleClick}
                 className={
@@ -161,16 +152,7 @@ export const UserProfile = () => {
               >
                 {dataEdit ? 'Edit 🖊' : 'Save 💾'}
               </button>
-            ) : (
-              <div>
-                <button
-                  onClick={handleClick}
-                  className={
-                    styles.userProfile__contianer__user__userData__data__buttonEdit
-                  }
-                >
-                  {dataEdit ? 'Edit 🖊' : 'Save 💾'}
-                </button>
+              {!dataEdit && (
                 <button
                   onClick={handleClick}
                   className={
@@ -179,8 +161,8 @@ export const UserProfile = () => {
                 >
                   Cancel
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </article>
           <button
             onClick={openDeleteModal}
