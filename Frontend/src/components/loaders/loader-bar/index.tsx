@@ -1,11 +1,13 @@
-import s from './LoaderBar.module.css';
+import styles from './LoaderBar.module.css';
 
 export const LoaderBar = ({ message }: { message: string }) => {
   return (
-    <div className={s.loaderBar__container}>
-      <div className={s.loaderBar__container__bar}>
-        <h1>{message}...</h1>
-        <div className={s.loaderBar__container__bar__progress}></div>
+    <div className={styles['loader-bar__container']}>
+      <div className={styles['loader-bar__container__bar']}>
+        <h1 className={styles['loader-bar__container__bar__msg']}>
+          {message}...
+        </h1>
+        <div className={styles['loader-bar__container__bar__progress']}></div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { InputForm } from '@components/InputForm';
 import { formValidation } from '@helpers/formsValidations';
 import { PasswordRecovery } from 'interfaces/pages/PasswordRecovery';
 
-import s from './RecoveryDataCard.module.css';
+import styles from './RecoveryDataCard.module.css';
 
 const initialValues = {
   username: '',
@@ -16,7 +16,7 @@ export const RecoveryDataCard: FC<PasswordRecovery> = ({ onNext }) => {
     {
       initialValues,
       onSubmit: () => {
-        resetForm()
+        resetForm();
         onNext();
       },
       validationSchema: formValidation.omit(['password', 'repetPassword'])
@@ -24,8 +24,13 @@ export const RecoveryDataCard: FC<PasswordRecovery> = ({ onNext }) => {
   );
 
   return (
-    <form className={s.recoveryDataCard__container} onSubmit={handleSubmit}>
-      <div className={s.recoveryDataCard__container__form__input__box}>
+    <form
+      className={styles['recovery-data-card__container']}
+      onSubmit={handleSubmit}
+    >
+      <div
+        className={styles['recovery-data-card__container__form__input__box']}
+      >
         <label htmlFor=''>Enter you username</label>
         <InputForm
           type='text'
@@ -47,7 +52,7 @@ export const RecoveryDataCard: FC<PasswordRecovery> = ({ onNext }) => {
       </div>
       <button
         type='submit'
-        className={s.recoveryDataCard__container__form__button}
+        className={styles['recovery-data-card__container__form__button']}
       >
         Send code
       </button>

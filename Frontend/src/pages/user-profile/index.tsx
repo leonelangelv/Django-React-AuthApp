@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { InputForm } from '@components/InputForm';
-import s from './UserProfile.module.css';
 import { useModal } from '@hooks/useModal';
 import { HeaderUserProfile } from './components/header-userProfile';
 import { LoaderBar } from '@components/loaders/loader-bar';
+
+import styles from './UserProfile.module.css';
 
 export const UserProfile = () => {
   const [dataEdit, setDataEdit] = useState(true);
@@ -16,15 +17,15 @@ export const UserProfile = () => {
   const { isOpen, closeModal, openModal } = useModal(false);
 
   return (
-    <section className={s.userProfile__contianer}>
+    <section className={styles.userProfile__contianer}>
       {deleteAccount && (
-        <div className={s.loaderBar__box}>
+        <div className={styles.loaderBar__box}>
           <LoaderBar message='Deleting' />
         </div>
       )}
       {isOpen && (
-        <div className={s.deleteAccount__container}>
-          <div className={s.deleteAccount__container__delete__box}>
+        <div className={styles.deleteAccount__container}>
+          <div className={styles.deleteAccount__container__delete__box}>
             <p>Do you want to delete your account?</p>
             <button
               onClick={() => {
@@ -41,18 +42,18 @@ export const UserProfile = () => {
 
       <HeaderUserProfile />
 
-      <article className={s.userProfile__contianer__user}>
-        <section className={s.userProfile__contianer__user__profile}>
-          <div className={s.userProfile__contianer__user__profile__img__box}>
+      <article className={styles.userProfile__contianer__user}>
+        <section className={styles.userProfile__contianer__user__profile}>
+          <div className={styles.userProfile__contianer__user__profile__img__box}>
             <img
               src='https://th.bing.com/th/id/OIP.qDwy8_W3I3nDq0A89Mmk5QHaHa?w=191&h=191&c=7&r=0&o=5&pid=1.7'
               alt='Don Pepito'
               title='Don Pepito'
-              className={s.userProfile__contianer__user__profile__img}
+              className={styles.userProfile__contianer__user__profile__img}
             />
             <button
               title='Edit image'
-              className={s.userProfile__contianer__user__profile__editImg}
+              className={styles.userProfile__contianer__user__profile__editImg}
             >
               🖊
             </button>
@@ -61,14 +62,14 @@ export const UserProfile = () => {
             src='https://th.bing.com/th?id=OIP.g8nzSYYKVcA4_9Ct31W1LwHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'
             alt='Flag Argentina'
             title='Flag Argentina'
-            className={s.userProfile__contianer__user__profile__flagCountry}
+            className={styles.userProfile__contianer__user__profile__flagCountry}
           />
         </section>
 
-        <section className={s.userProfile__contianer__user__userData}>
-          <article className={s.userProfile__contianer__user__userData__data}>
+        <section className={styles.userProfile__contianer__user__userData}>
+          <article className={styles.userProfile__contianer__user__userData__data}>
             <h3>Personal data</h3>
-            <form className={s.userProfile__contianer__user__userData__form}>
+            <form className={styles.userProfile__contianer__user__userData__form}>
               <div>
                 <label htmlFor=''>Name</label>
                 <InputForm
@@ -115,7 +116,7 @@ export const UserProfile = () => {
               </div>
               <div
                 className={
-                  s.userProfile__contianer__user__userData__form__select__box
+                  styles.userProfile__contianer__user__userData__form__select__box
                 }
               >
                 <label htmlFor='country'>Country</label>
@@ -129,7 +130,7 @@ export const UserProfile = () => {
               </div>
               <div
                 className={
-                  s.userProfile__contianer__user__userData__form__select__box
+                  styles.userProfile__contianer__user__userData__form__select__box
                 }
               >
                 <label htmlFor='province'>Province</label>
@@ -147,7 +148,7 @@ export const UserProfile = () => {
               <button
                 onClick={handleClick}
                 className={
-                  s.userProfile__contianer__user__userData__data__buttonEdit
+                  styles.userProfile__contianer__user__userData__data__buttonEdit
                 }
               >
                 {dataEdit ? 'Edit 🖊' : 'Save 💾'}
@@ -157,7 +158,7 @@ export const UserProfile = () => {
                 <button
                   onClick={handleClick}
                   className={
-                    s.userProfile__contianer__user__userData__data__buttonEdit
+                    styles.userProfile__contianer__user__userData__data__buttonEdit
                   }
                 >
                   {dataEdit ? 'Edit 🖊' : 'Save 💾'}
@@ -165,7 +166,7 @@ export const UserProfile = () => {
                 <button
                   onClick={handleClick}
                   className={
-                    s.userProfile__contianer__user__userData__data__buttonEdit
+                    styles.userProfile__contianer__user__userData__data__buttonEdit
                   }
                 >
                   Cancel
@@ -175,7 +176,7 @@ export const UserProfile = () => {
           </article>
           <button
             onClick={openModal}
-            className={s.userProfile__contianer__user__userData__buttonDelete}
+            className={styles.userProfile__contianer__user__userData__buttonDelete}
           >
             Delete account
           </button>

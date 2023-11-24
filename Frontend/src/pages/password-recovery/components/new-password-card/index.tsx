@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { InputForm } from '@components/InputForm';
 import { formValidation } from '@helpers/formsValidations';
 
-import s from './NewPasswordCard.module.css';
+import styles from './NewPasswordCard.module.css';
 
 const initialValues = {
   password: '',
@@ -24,9 +24,12 @@ export const NewPasswordCard: FC<PasswordRecovery> = ({ onNext }) => {
   );
 
   return (
-    <form className={s.NewPasswordCard__container} onSubmit={handleSubmit}>
+    <form
+      className={styles['new-password-card__container']}
+      onSubmit={handleSubmit}
+    >
       <h4>Enter the new password</h4>
-      <div className={s.NewPasswordCard__container__form__input__box}>
+      <div className={styles['new-password-card__container__form__input__box']}>
         <InputForm
           type='text'
           placeholder='Password'
@@ -37,7 +40,7 @@ export const NewPasswordCard: FC<PasswordRecovery> = ({ onNext }) => {
           {...getFieldProps('password')}
         />
       </div>
-      <div className={s.NewPasswordCard__container__form__input__box}>
+      <div className={styles['new-password-card__container__form__input__box']}>
         <InputForm
           type='text'
           placeholder='Repet password'
@@ -50,7 +53,7 @@ export const NewPasswordCard: FC<PasswordRecovery> = ({ onNext }) => {
       </div>
       <button
         type='submit'
-        className={s.NewPasswordCard__container__form__button}
+        className={styles['new-password-card__container__form__button']}
       >
         Confirm
       </button>

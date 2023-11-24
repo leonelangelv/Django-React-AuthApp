@@ -1,11 +1,10 @@
 import { useState } from 'react';
-
-import s from './PasswordRecovery.module.css';
-
 import { RecoveryDataCard } from './components/recovery-data-card';
 import { EnterCodeCard } from './components/enter-code-card';
 import { NewPasswordCard } from './components/new-password-card';
 import { PasswordSavedCard } from './components/password-saved-card';
+
+import styles from './PasswordRecovery.module.css';
 
 type Stage = 'recoveryData' | 'enterCode' | 'newPassword' | 'passwordSaved';
 
@@ -19,5 +18,5 @@ export const PasswordRecovery = () => {
     passwordSaved: <PasswordSavedCard />
   };
 
-  return <div className={s.poasswordRecovery__container}>{stages[stage]}</div>;
+  return <div className={styles['poassword-recovery__container']}>{stages[stage]}</div>;
 };
