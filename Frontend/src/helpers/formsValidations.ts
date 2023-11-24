@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const NAME_LENGTH = 15;
 const MIN_PASSWORD = 8;
 
-const ERRORS_LOGIN = {
+const ERRORS = {
   REQUIRED: 'Este campo es obligatorio',
   NAME: `El nombre debe tener menos de ${NAME_LENGTH} caracteres`,
   PASSWORD: {
@@ -13,21 +13,26 @@ const ERRORS_LOGIN = {
     NUMBER: 'La contraseña debe tener al menos un número',
     SPECIAL: 'La contraseña debe tener al menos un caracter especial',
     MATCH: 'Las contraseñas deben coincidir'
-  }
+  },
+  EMAIL: 'El email no es valido'
 };
 
-export const LoginValidation = Yup.object({
+export const formValidation = Yup.object({
   username: Yup.string()
-    .required(ERRORS_LOGIN.REQUIRED)
-    .max(NAME_LENGTH, ERRORS_LOGIN.NAME),
+    .required(ERRORS.REQUIRED)
+    .max(NAME_LENGTH, ERRORS.NAME),
   password: Yup.string()
-    .required(ERRORS_LOGIN.REQUIRED)
-    .min(MIN_PASSWORD, ERRORS_LOGIN.PASSWORD.MIN)
-    .matches(/^(?=.*[a-z])/, ERRORS_LOGIN.PASSWORD.LOWERCASE)
-    .matches(/^(?=.*[A-Z])/, ERRORS_LOGIN.PASSWORD.UPPERCASE)
-    .matches(/^(?=.*\d)/, ERRORS_LOGIN.PASSWORD.NUMBER)
+    .required(ERRORS.REQUIRED)
+    .min(MIN_PASSWORD, ERRORS.PASSWORD.MIN)
+    .matches(/^(?=.*[a-z])/, ERRORS.PASSWORD.LOWERCASE)
+    .matches(/^(?=.*[A-Z])/, ERRORS.PASSWORD.UPPERCASE)
+    .matches(/^(?=.*\d)/, ERRORS.PASSWORD.NUMBER)
     .matches(
       /^(?=.*[!@#$%^&*()\-_=+{}[\]|;:'",.<>/?])/,
-      ERRORS_LOGIN.PASSWORD.SPECIAL
-    )
+      ERRORS.PASSWORD.SPECIAL
+    ),
+  repetPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir')
+    .required(ERRORS.REQUIRED),
+  email: Yup.string().required(ERRORS.REQUIRED).email(ERRORS.EMAIL)
 });

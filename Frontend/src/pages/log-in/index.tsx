@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { InputForm } from '@components/InputForm';
 import { useFormik } from 'formik';
-import { LoginValidation } from '@helpers/formsValidations';
+import { formValidation } from '@helpers/formsValidations';
 import { UserData } from 'interfaces/pages/log-in';
 
 import s from './login.module.css';
@@ -17,7 +17,7 @@ export const Login = () => {
     onSubmit: () => {
       resetForm()
     },
-    validationSchema: LoginValidation
+    validationSchema: formValidation
   });
 
   return (
