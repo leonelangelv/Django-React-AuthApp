@@ -1,7 +1,7 @@
 import { FC, InputHTMLAttributes } from 'react';
 import { InputErrorMessage } from './components/input-message-error';
 
-import s from './InputForm.module.css';
+import styles from './InputForm.module.css';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   type: string;
@@ -9,14 +9,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   hasError?: boolean;
   errorMessage?: string;
 }
-
-/**
- * `InputForm` es un componente de formulario de React que renderiza un elemento de entrada y muestra un mensaje de error si es necesario.
- *
- * @component
- * @param {boolean} [hasError=false] - Un indicador de si el elemento de entrada tiene un error.
- * @param {string} [errorMessage=''] - El mensaje de error a mostrar si `hasError` es verdadero.
- */
 
 export const InputForm: FC<Props> = ({
   type,
@@ -30,8 +22,8 @@ export const InputForm: FC<Props> = ({
       <input
         type={type}
         placeholder={placeholder}
-        className={`${s.formLogin__container__input} ${
-          hasError ? s['has-error'] : s['not-error']
+        className={`${styles['form-login__container__input']} ${
+          hasError ? styles['has-error'] : styles['not-error']
         }`}
         {...props}
       />

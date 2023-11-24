@@ -3,7 +3,7 @@ import { InputForm } from '@components/InputForm';
 import { useFormik } from 'formik';
 import { formValidation } from '@helpers/formsValidations';
 
-import s from './signup.module.css';
+import styles from './signup.module.css';
 
 const initialValues = {
   username: '',
@@ -23,10 +23,10 @@ export const Signup = () => {
   );
 
   return (
-    <div className={s.signup__container}>
-      <div className={s.signup__box}>
-        <p className={s.signup__box__title}>Sign up</p>
-        <form className={s.formsignup__container} onSubmit={handleSubmit}>
+    <div className={styles.signup__container}>
+      <div className={styles.signup__box}>
+        <p className={styles.signup__box__title}>Sign up</p>
+        <form className={styles.formsignup__container} onSubmit={handleSubmit}>
           <InputForm
             type='text'
             placeholder='Username'
@@ -48,16 +48,16 @@ export const Signup = () => {
             errorMessage={errors.repetPassword}
             {...getFieldProps('repetPassword')}
           />
-          <button type='submit' className={s.signup__box__buttonSubmit}>
+          <button type='submit' className={styles.signup__box__buttonSubmit}>
             Sign up
           </button>
         </form>
-        <div className={s.signup__box__moreInfo__container}>
-          <p className={s.signup__box__moreInfo}>
+        <div className={styles.signup__box__moreInfo__container}>
+          <p className={styles.signup__box__moreInfo}>
             have an account?{' '}
             <Link
               to={'/login'}
-              className={s.signup__box__moreInfo__featuredLink}
+              className={styles.signup__box__moreInfo__featuredLink}
             >
               Login
             </Link>

@@ -1,4 +1,4 @@
-.EnterCodeCard__container {
+.enter-code-card__container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,12 +8,12 @@
   border-radius: 1rem;
 }
 
-.EnterCodeCard__container__form__input__box {
+.enter-code-card__container__form__input__box {
   margin-bottom: 1rem;
   width: 100%;
 }
 
-.EnterCodeCard__container__form__button {
+.enter-code-card__container__form__button {
   margin-top: 1.5rem;
   padding: .5rem 1rem;
   border: .1rem solid #000;

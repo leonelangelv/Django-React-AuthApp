@@ -1,15 +1,15 @@
 import { checkAnimateIcon } from '@assets/icon';
 
-import s from './PasswordSavedCard.module.css';
+import styles from './PasswordSavedCard.module.css';
 
 export const PasswordSavedCard = () => {
   return (
-    <div className={s.PasswordSavedCard__container}>
+    <div className={styles['password-saved-card__container']}>
       <p>Password Saved</p>
       <img
         src={checkAnimateIcon}
         alt='check animated'
-        className={s.PasswordSavedCard__container__img}
+        className={styles['password-saved-card__container__img']}
       />
     </div>
   );

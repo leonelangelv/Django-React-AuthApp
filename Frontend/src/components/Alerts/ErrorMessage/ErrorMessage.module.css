@@ -1,4 +1,4 @@
-.errorMessage__container {
+.error-message__container {
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -9,12 +9,12 @@
   margin: 0rem;
 }
 
-.errorMessage__container__icon {
+.error-message__container__icon {
   width: 2.5rem;
   margin-right: .5rem;
   border-radius: 50%;
 }
 
-.errorMessage__container__message {
+.error-message__container__message {
   margin: 0rem;
 }
