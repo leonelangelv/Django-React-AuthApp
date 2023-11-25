@@ -54,7 +54,7 @@ export const Signup = () => {
         </form>
         <div className={styles.signup__box__moreInfo__container}>
           <p className={styles.signup__box__moreInfo}>
-            have an account?{' '}
+            do have an account?{' '}
             <Link
               to={'/login'}
               className={styles.signup__box__moreInfo__featuredLink}
