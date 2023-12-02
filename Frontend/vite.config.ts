@@ -17,6 +17,7 @@ export default defineConfig({
       '@helpers': path.resolve(__dirname, './src/helpers'),
       '@services': path.resolve(__dirname, './src/services'),
       '@constant': path.resolve(__dirname, './src/constant'),
+      '@contexts': path.resolve(__dirname, './src/contexts'),
     }
   },
   css: {

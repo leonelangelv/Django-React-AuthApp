@@ -1,6 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+import { USER_KEY } from '@constant/index';
+
 import s from './HeaderUserProfile.module.css';
 
 export const HeaderUserProfile = () => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    localStorage.removeItem(USER_KEY);
+    navigate('/login');
+  };
+
   return (
     <header className={s.userProfile__contianer__header}>
       <img
@@ -9,7 +19,10 @@ export const HeaderUserProfile = () => {
         className={s.userProfile__contianer__header__userImg}
       />
       <p className={s.userProfile__contianer__header__userName}>Leonel Angel</p>
-      <button className={s.userProfile__contianer__header__signOut}>
+      <button
+        className={s.userProfile__contianer__header__signOut}
+        onClick={handleSignOut}
+      >
         Sign out
       </button>
     </header>
