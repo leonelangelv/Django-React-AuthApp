@@ -51,9 +51,9 @@ REST_FRAMEWORK = {
     )
 }
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(seconds=10),
-# }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+}
 
 # APPEND_SLASH = False
 

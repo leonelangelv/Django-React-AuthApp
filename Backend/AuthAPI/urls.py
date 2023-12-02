@@ -33,5 +33,5 @@ urlpatterns = [
     path("auth/update-user", PutView.as_view(), name="update_user"),
     path("geo-api", GeoView.as_view(), name="geo_api"),
     path("geo-api/<str:country>", GeoView.as_view(), name="geo_api_country"),
-    path("auth/refresh-token", RefreshTokenView.as_view()),
+    path("auth/refresh-token", RefreshTokenView.as_view(), name="refresh_token"),
 ]
