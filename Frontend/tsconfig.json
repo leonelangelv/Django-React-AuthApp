@@ -29,6 +29,7 @@
       "@helpers/*": ["helpers/*"],
       "@services/*": ["services/*"],
       "@constant/*": ["constant/*"],
+      "@contexts/*": ["contexts/*"],
     }
   },
   "include": ["src"],

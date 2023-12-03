@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginResponse, sendLoginRequest } from '@services/sendLoginRequest';
 import { InputForm } from '@components/InputForm';
 import { useFormik } from 'formik';
 import { formValidation } from '@helpers/formsValidations';
+import { ErrorMessage } from '@components/Alerts/ErrorMessage';
+import { UserContext } from '@contexts/UserContext';
 import { UserData } from 'interfaces/pages/log-in';
 
 import styles from './login.module.css';
@@ -12,18 +16,48 @@ const initialValues: UserData = {
 };
 
 export const Login = () => {
-  const { handleSubmit, touched, errors, getFieldProps, resetForm} = useFormik({
+  const { updateUser, setAuthenticated } = useContext(UserContext)!;
+  const navigate = useNavigate();
+
+  const {
+    handleSubmit,
+    touched,
+    errors,
+    getFieldProps,
+    resetForm,
+    status,
+    setStatus
+  } = useFormik({
     initialValues,
-    onSubmit: () => {
-      resetForm()
+    onSubmit: async (values) => {
+      try {
+        const { ok, message, ...res } = (await sendLoginRequest(
+          values
+        )) as LoginResponse;
+
+        if (!ok) {
+          setStatus(message || 'Error desconocido al iniciar sesión.');
+        } else {
+          setAuthenticated(true);
+          navigate('/profile');
+          updateUser(res);
+          resetForm();
+        }
+      } catch (error) {
+        console.error(
+          'Error al enviar la solicitud de inicio de sesión:',
+          error
+        );
+      }
     },
-    validationSchema: formValidation
+    validationSchema: formValidation.omit(['email', 'repetPassword'])
   });
 
   return (
     <div className={styles.login__container}>
       <div className={styles.login__box}>
         <p className={styles.login__box__title}>Login</p>
+        {status && <ErrorMessage message={status} />}
         <form className={styles.formLogin__container} onSubmit={handleSubmit}>
           <InputForm
             type='text'
@@ -31,7 +65,7 @@ export const Login = () => {
             hasError={!!errors.username && touched.username}
             errorMessage={errors.username}
             {...getFieldProps('username')}
-            />
+          />
           <InputForm
             type='password'
             placeholder='Password'
