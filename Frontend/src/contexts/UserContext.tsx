@@ -4,14 +4,16 @@ import { ReactNode, createContext } from 'react';
 import { useLocalStorage } from '@hooks/useLocalStorage';
 import { USER_KEY } from '@constant/index';
 
-interface CartContextProps {
+interface UserContextProps {
   userData: LoginResponse | null;
   updateUser: (data: any) => void;
   authenticated: boolean;
   setAuthenticated: (value: boolean) => void;
 }
 
-export const UserContext = createContext<CartContextProps | null>(null);
+export const UserContext = createContext<UserContextProps>(
+  {} as UserContextProps
+);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [userData, setUserData] = useState<LoginResponse | null>(null);
@@ -19,8 +21,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [initialized, setInitialized] = useState(false);
 
   const [savedUser, saveUser] = useLocalStorage(USER_KEY, userData);
-
-  console.log(userData);
 
   useEffect(() => {
     if (!initialized && savedUser) {
@@ -39,7 +39,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setUserData(userData);
   };
 
-  const values: CartContextProps = {
+  const values: UserContextProps = {
     userData,
     updateUser,
     authenticated,

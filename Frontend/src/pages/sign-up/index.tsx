@@ -1,32 +1,74 @@
+import { useContext } from 'react';
+import { UserContext } from '@contexts/UserContext';
+import { ErrorMessage } from '@components/Alerts/ErrorMessage';
 import { Link } from 'react-router-dom';
 import { InputForm } from '@components/InputForm';
 import { useFormik } from 'formik';
 import { formValidation } from '@helpers/formsValidations';
+import { signupRequest } from '@services/signupRequest';
 
 import styles from './signup.module.css';
 
 const initialValues = {
+  name: '',
+  lastname: '',
   username: '',
   password: '',
   repetPassword: ''
 };
 
 export const Signup = () => {
-  const { handleSubmit, touched, errors, getFieldProps, resetForm } = useFormik(
-    {
-      initialValues,
-      onSubmit: () => {
-        resetForm();
-      },
-      validationSchema: formValidation
-    }
-  );
+  const { setAuthenticated, updateUser } = useContext(UserContext);
+
+  const {
+    handleSubmit,
+    touched,
+    errors,
+    getFieldProps,
+    resetForm,
+    status,
+    setStatus
+  } = useFormik({
+    initialValues,
+    onSubmit: async (values) => {
+      const userData = { user: values };
+      try {
+        const { message, ok, ...res } = await signupRequest(userData);
+
+        if (ok) {
+          setAuthenticated(true);
+          updateUser(res);
+          resetForm();
+        } else {
+          setStatus(message);
+        }
+      } catch (error) {
+        console.error('Error al enviar la solicitud de registro:', error);
+      }
+    },
+    validationSchema: formValidation.omit(['email'])
+  });
 
   return (
     <div className={styles.signup__container}>
       <div className={styles.signup__box}>
         <p className={styles.signup__box__title}>Sign up</p>
+        {status && <ErrorMessage message={status} />}
         <form className={styles.formsignup__container} onSubmit={handleSubmit}>
+          <InputForm
+            type='text'
+            placeholder='Name'
+            hasError={touched.name && !!errors.name}
+            errorMessage={errors.name}
+            {...getFieldProps('name')}
+          />
+          <InputForm
+            type='text'
+            placeholder='Lastname'
+            hasError={touched.lastname && !!errors.lastname}
+            errorMessage={errors.lastname}
+            {...getFieldProps('lastname')}
+          />
           <InputForm
             type='text'
             placeholder='Username'
