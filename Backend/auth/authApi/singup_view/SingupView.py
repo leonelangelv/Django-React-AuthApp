@@ -32,9 +32,11 @@ class SingupView(APIView):
             hashed_password = make_password(password)
             with connection.cursor() as cursor:
                 cursor.execute("INSERT INTO users (username, name, lastname, passwordHash) VALUES (%s, %s, %s, %s)", [username, name, lastname, hashed_password])
-                user_simulator = UserSimulator({'id': cursor.lastrowid, 'username': username})
-                refresh = RefreshToken.for_user(user_simulator)
-                access_token = str(refresh.access_token)
-                return Response({'ok': True, 'user': username, 'access_token': access_token})
+                userId = cursor.lastrowid
+                
+            user_simulator = UserSimulator({'id': cursor.lastrowid, 'username': username})
+            refresh = RefreshToken.for_user(user_simulator)
+            access_token = str(refresh.access_token)
+            return Response({'ok': True, 'userId': userId, 'access_token': access_token, 'message': 'user created'})
         else:
             return Response({'ok': False, 'message': 'invalid credentials'})
