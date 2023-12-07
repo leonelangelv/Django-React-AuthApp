@@ -18,7 +18,6 @@ class GeoView(APIView):
     def get(self, request: HttpRequest, country=None):
         try:
             token = request.headers['Authorization']
-            print('|'*10, token)
         except Exception as e:
             return Response({'ok': False, 'message': f'The header {str(e)} does not exist'})
         
