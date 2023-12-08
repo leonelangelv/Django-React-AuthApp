@@ -230,7 +230,7 @@ export const UserProfile = () => {
               >
                 <label htmlFor='country'>Country</label>
                 <select
-                  disabled={dataEdit}
+                  disabled={!dataEdit}
                   {...getFieldProps('country')}
                   onChange={(e) => {
                     setCountrySelected(e.target.value);
@@ -253,7 +253,7 @@ export const UserProfile = () => {
                 }
               >
                 <label htmlFor='province'>Province</label>
-                <select disabled={dataEdit} {...getFieldProps('province')}>
+                <select disabled={!dataEdit} {...getFieldProps('province')}>
                   <option value='' selected disabled>
                     {personalData.province}
                   </option>
