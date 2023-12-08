@@ -1,16 +1,5 @@
 import { BASE_URL } from '@constant/index';
-
-interface SignupResponse {
-  ok: boolean;
-  user: number;
-  access_token: string;
-  message: string;
-}
-
-interface SignupResponseError {
-  ok: boolean;
-  message: string;
-}
+import { ResponseError, UserDataResponse } from 'interfaces';
 
 interface Values {
   name: string;
@@ -25,7 +14,7 @@ interface UserData {
 
 export const signupRequest = async (
   userData: UserData
-): Promise<SignupResponse | SignupResponseError> => {
+): Promise<UserDataResponse | ResponseError> => {
   try {
     const res = await fetch(`${BASE_URL}/auth/singup`, {
       method: 'POST',

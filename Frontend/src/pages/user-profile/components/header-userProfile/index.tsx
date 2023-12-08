@@ -1,9 +1,12 @@
+import { useContext } from 'react';
+import { UserContext } from '@contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { USER_KEY } from '@constant/index';
 
 import s from './HeaderUserProfile.module.css';
 
 export const HeaderUserProfile = () => {
+  const { userData } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSignOut = () => {
@@ -18,7 +21,9 @@ export const HeaderUserProfile = () => {
         alt='Don Pepito'
         className={s.userProfile__contianer__header__userImg}
       />
-      <p className={s.userProfile__contianer__header__userName}>Leonel Angel</p>
+      <p className={s.userProfile__contianer__header__userName}>
+        {userData.user.name}
+      </p>
       <button
         className={s.userProfile__contianer__header__signOut}
         onClick={handleSignOut}
