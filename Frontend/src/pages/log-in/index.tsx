@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LoginResponse, sendLoginRequest } from '@services/sendLoginRequest';
+import { sendLoginRequest } from '@services/sendLoginRequest';
 import { InputForm } from '@components/InputForm';
 import { useFormik } from 'formik';
 import { formValidation } from '@helpers/formsValidations';
@@ -31,9 +31,7 @@ export const Login = () => {
     initialValues,
     onSubmit: async (values) => {
       try {
-        const { ok, message, ...res } = (await sendLoginRequest(
-          values
-        )) as LoginResponse;
+        const { ok, message, ...res } = await sendLoginRequest(values);
 
         if (!ok) {
           setStatus(message || 'Error desconocido al iniciar sesión.');
@@ -44,10 +42,7 @@ export const Login = () => {
           resetForm();
         }
       } catch (error) {
-        console.error(
-          'Error al enviar la solicitud de inicio de sesión:',
-          error
-        );
+        console.error('Error sending login request:', error);
       }
     },
     validationSchema: formValidation.omit(['email', 'repetPassword'])

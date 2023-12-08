@@ -1,16 +1,10 @@
 import { BASE_URL } from '@constant/.';
+import { ResponseError, UserDataResponse } from 'interfaces';
 import { UserData } from 'interfaces/pages/log-in';
-
-export interface LoginResponse {
-  ok: boolean;
-  userId?: number;
-  access_token?: string;
-  message: string;
-}
 
 export const sendLoginRequest = async (
   userData: UserData
-): Promise<LoginResponse | undefined> => {
+): Promise<UserDataResponse | ResponseError> => {
   try {
     const res = await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
@@ -23,5 +17,6 @@ export const sendLoginRequest = async (
     return await res.json();
   } catch (error) {
     console.error(`Error in sendLoginRequest: ${error}`);
+    throw new Error('Error occurred during login request');
   }
 };

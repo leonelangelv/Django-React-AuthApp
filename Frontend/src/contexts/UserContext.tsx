@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { LoginResponse } from '@services/sendLoginRequest';
 import { ReactNode, createContext } from 'react';
 import { useLocalStorage } from '@hooks/useLocalStorage';
 import { USER_KEY } from '@constant/index';
+import { UserDataResponse } from 'interfaces';
 
 interface UserContextProps {
-  userData: LoginResponse | null;
+  userData: UserDataResponse;
   updateUser: (data: any) => void;
   authenticated: boolean;
   setAuthenticated: (value: boolean) => void;
@@ -16,7 +16,9 @@ export const UserContext = createContext<UserContextProps>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [userData, setUserData] = useState<LoginResponse | null>(null);
+  const [userData, setUserData] = useState<UserDataResponse>(
+    {} as UserDataResponse
+  );
   const [authenticated, setAuthenticated] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
@@ -30,10 +32,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, [initialized, savedUser]);
 
   useEffect(() => {
-    saveUser(userData);
+    if (authenticated && userData) {
+      saveUser(userData);
+    }
+  }, [userData, authenticated, saveUser]);
 
-    if (userData?.ok) setAuthenticated(true);
-  }, [userData, saveUser, authenticated]);
 
   const updateUser = (userData: any) => {
     setUserData(userData);

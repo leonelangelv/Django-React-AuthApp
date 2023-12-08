@@ -26,6 +26,14 @@ class LoginView(APIView):
             if not userData:
                 return Response({"ok": False, "message": "The username does not exist"})
 
+            with connection.cursor() as cursor:
+                userId = userData[0]
+                cursor.execute('''
+                    SELECT p.name, c.name FROM users u
+                    JOIN provinces p ON p.provinceId = u.provinceId
+                    JOIN countries c ON c.countryId = p.countryId
+                    WHERE u.userId = %s''', [userId])
+                userLocation = cursor.fetchone()
             hashed_password = userData[4]
 
             if not check_password(password, hashed_password):
@@ -36,12 +44,28 @@ class LoginView(APIView):
 
                 refresh = RefreshToken.for_user(user_simulator)
                 access_token = str(refresh.access_token)
+
+                if userLocation:
+                    province = userLocation[0]
+                    country = userLocation[1]
+                else:
+                    province = 'No selected'
+                    country = 'No selected'
+                
                 return Response(
                     {
                         "ok": True,
                         "userId": userData[0],
                         "access_token": access_token,
                         "message": "",
+                        "user": {
+                            "userId": userData[0],
+                            "username": userData[1],
+                            "name": userData[2],
+                            "lastname": userData[3],
+                            "province": province,
+                            "country": country,
+                        },
                     }
                 )
             

@@ -49,9 +49,13 @@ class PutView(APIView):
 
             # Actualizar el usuario
             with connection.cursor() as cursor:
-                hashed_password = make_password(password)
-                cursor.execute("UPDATE Users SET name = %s, lastname = %s, passwordHash = %s, provinceId = %s WHERE userId = %s",
-                               [name, lastname, hashed_password, province_id, user_id])
+                if not (password and repeat_password):
+                    cursor.execute("UPDATE Users SET name = %s, lastname = %s, provinceId = %s WHERE userId = %s",
+                                [name, lastname, province_id, user_id])
+                else:
+                    hashed_password = make_password(password)
+                    cursor.execute("UPDATE Users SET name = %s, lastname = %s, passwordHash = %s, provinceId = %s WHERE userId = %s",
+                                [name, lastname, hashed_password, province_id, user_id])
 
                 return Response({'ok': True, 'message': 'User updated correctly'}, status=200)
 
