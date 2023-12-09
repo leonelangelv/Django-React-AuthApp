@@ -17,9 +17,25 @@
   border-radius: .8rem;
 }
 
-.delete-account__container__delete__box button {
+.delete-account__container__delete__box__confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background-color: #fff;
+  text-align: center;
+  padding: 2rem;
+  border-radius: .8rem;
+  width: 20rem;
+}
+
+.delete-account__container__delete__box__confirm__form{
+  width: 100%;
+}
+
+.delete-account__container__button {
   margin: 0rem 1rem;
-  width: 7rem;
+  width: auto;
   margin-top: 1.5rem;
   padding: .5rem 1rem;
   border-radius: .5rem;

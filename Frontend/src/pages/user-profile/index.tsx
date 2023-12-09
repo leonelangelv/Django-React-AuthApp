@@ -11,17 +11,15 @@ import { userUpdateRequest } from '@services/userUpdateRequest';
 import { InputForm } from '@components/InputForm';
 import { useModal } from '@hooks/useModal';
 import { HeaderUserProfile } from './components/header-userProfile';
-import { LoaderBar } from '@components/loaders/loader-bar';
 import { DeleteAccountModal } from './components/delete-account-modal';
+import { formUserProfileValidation } from '@helpers/formsValidations';
 
 import styles from './UserProfile.module.css';
-import { formUserProfileValidation } from '@helpers/formsValidations';
 
 export const UserProfile = () => {
   const { userData, updateUser } = useContext(UserContext);
 
   const [dataEdit, setDataEdit] = useState(false);
-  const [deleteAccount, setDeleteAccount] = useState(false);
   const [geodata, setGeodata] = useState<GeodataWithoutProvinces>(
     {} as GeodataWithoutProvinces
   );
@@ -117,14 +115,8 @@ export const UserProfile = () => {
 
   return (
     <section className={styles.userProfile__contianer}>
-      {deleteAccount && (
-        <div className={styles.loaderBar__box}>
-          <LoaderBar message='Deleting' />
-        </div>
-      )}
       {isOpenDelete && (
         <DeleteAccountModal
-          setDeleteAccount={setDeleteAccount}
           closeModal={closeDeleteModal}
         />
       )}

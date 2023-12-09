@@ -69,3 +69,16 @@ export const formUserProfileValidation = Yup.object({
     }
   )
 });
+
+export const formDeleteAccountValidation = Yup.object({
+  password: Yup.string()
+    .required(ERRORS.REQUIRED)
+    .min(MIN_PASSWORD, ERRORS.PASSWORD.MIN)
+    .matches(/^(?=.*[a-z])/, ERRORS.PASSWORD.LOWERCASE)
+    .matches(/^(?=.*[A-Z])/, ERRORS.PASSWORD.UPPERCASE)
+    .matches(/^(?=.*\d)/, ERRORS.PASSWORD.NUMBER)
+    .matches(
+      /^(?=.*[!@#$%^&*()\-_=+{}[\]|;:'",.<>/?])/,
+      ERRORS.PASSWORD.SPECIAL
+    )
+});
