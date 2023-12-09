@@ -25,7 +25,7 @@ CREATE TABLE users (
   constraint FK_countries_users FOREIGN KEY (provinceId) REFERENCES provinces (provinceId) ON UPDATE CASCADE
 );
 
-INSERT INTO Countries (name) VALUES 
+INSERT INTO Countries (name, `urlImg`) VALUES 
 ('Argentina'),
 ('Brasil'),
 ('Chile'),
@@ -37,8 +37,7 @@ INSERT INTO Countries (name) VALUES
 ('México'),
 ('España');
 
-
----> countries
+---> provinces
   INSERT INTO provinces (name, countryId) VALUES 
   ('Buenos Aires', 1),
   ('Córdoba', 1),
