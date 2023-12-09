@@ -13,6 +13,10 @@ import { useModal } from '@hooks/useModal';
 import { HeaderUserProfile } from './components/header-userProfile';
 import { DeleteAccountModal } from './components/delete-account-modal';
 import { formUserProfileValidation } from '@helpers/formsValidations';
+import {
+  GetUserFlagResponse,
+  getUserFlagRequest
+} from '@services/getUserFlagRequest';
 
 import styles from './UserProfile.module.css';
 
@@ -26,6 +30,9 @@ export const UserProfile = () => {
   const [countrySelected, setCountrySelected] = useState('');
   const [provinces, setProvinces] = useState<CountryWithProvinces>(
     {} as CountryWithProvinces
+  );
+  const [userFlag, setUserFlag] = useState<GetUserFlagResponse>(
+    {} as GetUserFlagResponse
   );
 
   const { name, lastname, username, country, province } = userData.user;
@@ -105,6 +112,19 @@ export const UserProfile = () => {
     fetchProvinces();
   }, [countrySelected]);
 
+  useEffect(() => {
+    (async () => {
+      const userCountry = userData.user.country;
+      if (userCountry) {
+        const res = await getUserFlagRequest(userCountry);
+        if (res.ok) {
+          setUserFlag(res);
+        }
+      } else {
+      }
+    })();
+  }, [userData.user]);
+
   const handleClick = () => {
     setDataEdit(!dataEdit);
   };
@@ -115,11 +135,7 @@ export const UserProfile = () => {
 
   return (
     <section className={styles.userProfile__contianer}>
-      {isOpenDelete && (
-        <DeleteAccountModal
-          closeModal={closeDeleteModal}
-        />
-      )}
+      {isOpenDelete && <DeleteAccountModal closeModal={closeDeleteModal} />}
 
       <HeaderUserProfile />
 
@@ -141,14 +157,22 @@ export const UserProfile = () => {
               🖊
             </button>
           </div>
-          <img
-            src='https://th.bing.com/th?id=OIP.g8nzSYYKVcA4_9Ct31W1LwHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'
-            alt='Flag Argentina'
-            title='Flag Argentina'
+          <div
             className={
               styles.userProfile__contianer__user__profile__flagCountry
             }
-          />
+          >
+            {userData.user.country && (
+              <img
+                src={userFlag.flag}
+                alt={`${userFlag.name} flag`}
+                title={`${userFlag.name} flag`}
+                className={
+                  styles.userProfile__contianer__user__profile__flagCountry
+                }
+              />
+            )}
+          </div>
         </section>
 
         <section className={styles.userProfile__contianer__user__userData}>

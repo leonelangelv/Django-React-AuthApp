@@ -23,6 +23,7 @@ from auth.views import (
     PutView,
     GeoView,
     RefreshTokenView,
+    FlagView
 )
 
 urlpatterns = [
@@ -34,4 +35,5 @@ urlpatterns = [
     path("geo-api", GeoView.as_view(), name="geo_api"),
     path("geo-api/<str:country>", GeoView.as_view(), name="geo_api_country"),
     path("auth/refresh-token", RefreshTokenView.as_view(), name="refresh_token"),
+    path("auth/flag/<str:country>", FlagView.as_view(), name="flag"),
 ]
