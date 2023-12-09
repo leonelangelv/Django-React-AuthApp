@@ -23,9 +23,9 @@ class SingupView(APIView):
 
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM users WHERE username = %s", [username])
-            userId = cursor.fetchone()
-        
-        if userId:
+            userExist = cursor.fetchone()
+
+        if userExist:
             return Response({'ok': False, 'message': 'The user already exists'})
 
         if password == repetPassword and username:
@@ -33,10 +33,43 @@ class SingupView(APIView):
             with connection.cursor() as cursor:
                 cursor.execute("INSERT INTO users (username, name, lastname, passwordHash) VALUES (%s, %s, %s, %s)", [username, name, lastname, hashed_password])
                 userId = cursor.lastrowid
+            
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM users WHERE username = %s", [username])
+                userData = cursor.fetchone()
+
+            with connection.cursor() as cursor:
+                userId = userData[0]
+                cursor.execute('''
+                    SELECT p.name, c.name FROM users u
+                    JOIN provinces p ON p.provinceId = u.provinceId
+                    JOIN countries c ON c.countryId = p.countryId
+                    WHERE u.userId = %s''', [userId])
+                userLocation = cursor.fetchone()
                 
             user_simulator = UserSimulator({'id': cursor.lastrowid, 'username': username})
             refresh = RefreshToken.for_user(user_simulator)
             access_token = str(refresh.access_token)
-            return Response({'ok': True, 'userId': userId, 'access_token': access_token, 'message': 'user created'})
+
+            if userLocation:
+                province = userLocation[0]
+                country = userLocation[1]
+            else:
+                province = 'No selected'
+                country = 'No selected'
+            
+            return Response({
+                'ok': True, 
+                'userId': userId,
+                'access_token': access_token, 
+                'message': 'user created', 
+                'user': {
+                    "userId": userData[0],
+                    "username": userData[1],
+                    "name": userData[2],
+                    "lastname": userData[3],
+                    "province": province,
+                    "country": country,
+                }})
         else:
             return Response({'ok': False, 'message': 'invalid credentials'})
