@@ -116,9 +116,7 @@ export const UserProfile = () => {
     (async () => {
       const userCountry = userData.user.country;
       if (userCountry) {
-        console.log('entre');
         const res = await getUserFlagRequest(userCountry);
-        console.log(res);
         if (res.ok) {
           setUserFlag(res);
         }
