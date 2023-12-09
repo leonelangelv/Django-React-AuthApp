@@ -5,7 +5,10 @@ interface Props {
 }
 
 const styles = {
-  color: '#f00'
+  color: '#f00',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-start',
 };
 
 export const InputErrorMessage: FC<Props> = ({ message }) => {
