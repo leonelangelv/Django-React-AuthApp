@@ -5,9 +5,4 @@ from .authApi.delete_view.DeleteView import DeleteView
 from .authApi.geo_view.GeoView import GeoView
 from .authApi.refresh_token.RefreshToken import RefreshTokenView
 from .authApi.flag_view.FlagView import FlagView
-
-def superPrint(msg):
-    print(' - '*20)
-    print(msg)
-    print(' - '*20)
-    
+from .authApi.recovery_password_view.RecoveryPasswordView import RecoveryPasswordView, CheckRecoveryPasswordView, ResetPasswordView
