@@ -13,10 +13,7 @@ import { useModal } from '@hooks/useModal';
 import { HeaderUserProfile } from './components/header-userProfile';
 import { DeleteAccountModal } from './components/delete-account-modal';
 import { formUserProfileValidation } from '@helpers/formsValidations';
-import {
-  GetUserFlagResponse,
-  getUserFlagRequest
-} from '@services/getUserFlagRequest';
+import { UserProfileImg } from './components/userProfile-img';
 
 import styles from './UserProfile.module.css';
 
@@ -30,9 +27,6 @@ export const UserProfile = () => {
   const [countrySelected, setCountrySelected] = useState('');
   const [provinces, setProvinces] = useState<CountryWithProvinces>(
     {} as CountryWithProvinces
-  );
-  const [userFlag, setUserFlag] = useState<GetUserFlagResponse>(
-    {} as GetUserFlagResponse
   );
 
   const { name, lastname, username, country, province } = userData.user;
@@ -112,19 +106,6 @@ export const UserProfile = () => {
     fetchProvinces();
   }, [countrySelected]);
 
-  useEffect(() => {
-    (async () => {
-      const userCountry = userData.user.country;
-      if (userCountry) {
-        const res = await getUserFlagRequest(userCountry);
-        if (res.ok) {
-          setUserFlag(res);
-        }
-      } else {
-      }
-    })();
-  }, [userData.user]);
-
   const handleClick = () => {
     setDataEdit(!dataEdit);
   };
@@ -140,40 +121,7 @@ export const UserProfile = () => {
       <HeaderUserProfile />
 
       <article className={styles.userProfile__contianer__user}>
-        <section className={styles.userProfile__contianer__user__profile}>
-          <div
-            className={styles.userProfile__contianer__user__profile__img__box}
-          >
-            <img
-              src='https://th.bing.com/th/id/OIP.qDwy8_W3I3nDq0A89Mmk5QHaHa?w=191&h=191&c=7&r=0&o=5&pid=1.7'
-              alt='Don Pepito'
-              title='Don Pepito'
-              className={styles.userProfile__contianer__user__profile__img}
-            />
-            <button
-              title='Edit image'
-              className={styles.userProfile__contianer__user__profile__editImg}
-            >
-              🖊
-            </button>
-          </div>
-          <div
-            className={
-              styles.userProfile__contianer__user__profile__flagCountry
-            }
-          >
-            {userData.user.country && (
-              <img
-                src={userFlag.flag}
-                alt={`${userFlag.name} flag`}
-                title={`${userFlag.name} flag`}
-                className={
-                  styles.userProfile__contianer__user__profile__flagCountry
-                }
-              />
-            )}
-          </div>
-        </section>
+        <UserProfileImg />
 
         <section className={styles.userProfile__contianer__user__userData}>
           <article
