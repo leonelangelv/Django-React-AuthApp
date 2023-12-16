@@ -25,17 +25,34 @@ CREATE TABLE users (
   constraint FK_countries_users FOREIGN KEY (provinceId) REFERENCES provinces (provinceId) ON UPDATE CASCADE
 );
 
-INSERT INTO Countries (name, `urlImg`) VALUES 
-('Argentina'),
-('Brasil'),
-('Chile'),
-('Colombia'),
-('Ecuador'),
-('Perú'),
-('Uruguay'),
-('Venezuela'),
-('México'),
-('España');
+CREATE TABLE recoveryPasswordCode (
+  username VARCHAR(15) NOT NULL,
+  code VARCHAR(6) NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  constraint PK_recoveryPasswordCode PRIMARY KEY (username)
+);
+
+DELIMITER //
+CREATE EVENT delete_expired_codes
+ON SCHEDULE EVERY 70 SECOND
+DO
+  DELETE FROM recoveryPasswordCode WHERE createdAt < NOW() - INTERVAL 1 MINUTE;
+//
+DELIMITER ;
+
+
+---> Countries
+  INSERT INTO Countries (name, `urlImg`) VALUES 
+  ('Argentina'),
+  ('Brasil'),
+  ('Chile'),
+  ('Colombia'),
+  ('Ecuador'),
+  ('Perú'),
+  ('Uruguay'),
+  ('Venezuela'),
+  ('México'),
+  ('España');
 
 ---> provinces
   INSERT INTO provinces (name, countryId) VALUES 
