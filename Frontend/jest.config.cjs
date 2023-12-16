@@ -14,7 +14,11 @@ module.exports = {
     '^@components/(.*)': '<rootDir>/src/components/$1',
     '^@constant/(.*)': '<rootDir>/src/constant/$1',
     '^@helpers/(.*)': '<rootDir>/src/helpers/$1',
-    '^@contexts/(.*)': '<rootDir>/src/contexts/$1'
+    '^@contexts/(.*)': '<rootDir>/src/contexts/$1',
+    '^@hooks/(.*)': '<rootDir>/src/hooks/$1',
+    '^@pages/(.*)': '<rootDir>/src/pages/$1',
+    '^@services/(.*)': '<rootDir>/src/services/$1',
+    '^@utils/(.*)': '<rootDir>/src/utils/$1',
   }
 };
 
