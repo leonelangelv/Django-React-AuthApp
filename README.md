@@ -1,1 +1,1 @@
-# Django React AuthApp
+# Django rest_framework React AuthApp
